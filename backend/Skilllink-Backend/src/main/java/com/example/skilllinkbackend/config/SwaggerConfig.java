@@ -1,4 +1,4 @@
-package com.example.skilllinkbackend.features.config;
+package com.example.skilllinkbackend.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

@@ -29,7 +29,8 @@ public class AuthService {
         }
 
         String token = jwtUtils.generateToken(new UserPrincipal(user));
-        return new AuthResponse(token);
+        String refreshToken = jwtUtils.generateRefreshToken(new UserPrincipal(user));
+        return new AuthResponse(token, refreshToken);
     }
 
     public AuthResponse register(RegisterRequest request) {
@@ -38,7 +39,10 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole() !=null ? request.getRole() : Role.USER);
         userRepository.save(user);
-        return new AuthResponse(jwtUtils.generateToken(new UserPrincipal(user)));
+
+        String token = jwtUtils.generateToken(new UserPrincipal(user));
+        String refreshToken = jwtUtils.generateRefreshToken(new UserPrincipal(user));
+        return new AuthResponse(token, refreshToken);
     }
 
 }
