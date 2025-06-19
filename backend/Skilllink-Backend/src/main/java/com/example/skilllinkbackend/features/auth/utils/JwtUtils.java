@@ -20,8 +20,8 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class JwtUtils {
 
-//    @Value("${jwt.secret}")
-//    private String secretKey;
+    @Value("${jwt.secret}")
+    private String secretKey;
 
     @Value("${jwt.expiration}")
     private long jwtExpiration;
@@ -29,7 +29,7 @@ public class JwtUtils {
     @Value("${jwt.refresh-token.expiration}")
     private long refreshExpiration;
 
-    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    //private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
 
     public String extractUsername(String token) {
@@ -62,7 +62,7 @@ public class JwtUtils {
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
-                .signWith(secretKey, SignatureAlgorithm.HS512)
+                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
 

@@ -30,8 +30,9 @@ public class SecurityConfig {
                  .authorizeHttpRequests(auth -> auth
                          .requestMatchers("/api/auth/**").permitAll()
                          .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                         .requestMatchers("/api/mentor/**").hasRole("MENTOR")
+                         .requestMatchers("/api/mentors/**").permitAll()
                          .anyRequest().authenticated()
+                         //TODO establish endpoints permissions
                  );
          return http.build();
      }
