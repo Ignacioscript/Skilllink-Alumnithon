@@ -1,53 +1,62 @@
 package com.example.skilllinkbackend.features.users.controller;
 
 import com.example.skilllinkbackend.features.users.dto.MentorRequest;
-import com.example.skilllinkbackend.features.users.entities.Mentor;
+import com.example.skilllinkbackend.features.users.dto.MentorResponse;
 import com.example.skilllinkbackend.features.users.service.MentorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/mentors")
+@Controller
 @RequiredArgsConstructor
+@RequestMapping("/mentors")
 public class MentorController {
+
 
     private final MentorService mentorService;
 
-    @GetMapping("/test")
-    public String testMentorAccess() {
-        return "Welcome, mentor";
-    }
-
-
     @GetMapping
-    public ResponseEntity<List<Mentor>> findAll() {
-        return ResponseEntity.ok(mentorService.getAllMentors());
+    public String getAllMentors(Model model) {
+        List<MentorResponse> mentors = mentorService.getAllMentors();
+        model.addAttribute("mentors", mentors);
+        return "mentors";
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mentor> getMentorById(@PathVariable Long id) {
-        return ResponseEntity.ok(mentorService.getMentorById(id));
+    public String findMentorBYId(@PathVariable("id") Long id, Model model) {
+        MentorResponse mentor = mentorService.getMentorById(id);
+        model.addAttribute("mentor", mentor);
+        return "show-mentor";
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Mentor> createMentor(@RequestBody MentorRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(mentorService.createOrLinkMentor(request));
+    @GetMapping("/add")
+    public String showNewMentorForm(Model model) {
+        model.addAttribute("mentorRequest", new MentorRequest());
+        return "mentor-form";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Mentor> updateMentor(@PathVariable("id") Long id, @RequestBody MentorRequest request ) {
-        return ResponseEntity.ok(mentorService.updateMentor(id, request));
+    @PostMapping("/add")
+    public String saveMentor(@ModelAttribute("mentorRequest") MentorRequest request) {
+        mentorService.createOrLinkMentor(request);
+        return "redirect:/mentors";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMentorById(@PathVariable("id") Long id) {
+    @PostMapping("/delete/{id}")
+    public String deleteMentor(@PathVariable("id") Long id) {
         mentorService.deleteMentorById(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/mentors";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editMentor(@PathVariable("id") Long id, @ModelAttribute("mentorRequest") MentorRequest request) {
+        mentorService.updateMentor(id, request);
+        return "redirect:/mentors";
+    }
+
+
 
 
 

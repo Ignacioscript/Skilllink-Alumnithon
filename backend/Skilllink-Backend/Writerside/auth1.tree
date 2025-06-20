@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="auth1"
+                  name="auth"
+                  start-page="auth.md" is-library="true">
+
+    <toc-element topic="securityConfig.md"/>
+    <toc-element topic="jwtAuthFilter.md"/>
+    <toc-element topic="jwtUtils.md"/>
+    <toc-element topic="auth.md"/>
+</instance-profile>

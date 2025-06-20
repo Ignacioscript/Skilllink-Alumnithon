@@ -17,5 +17,4 @@ server:
   port: 8081
 
 jwt:
-  secret: "5w60FFz8qzlA8XBEhdsjylZI6EuMxeEZG9uqFg2x9ovbxyfN43cdYZne7DxWsdYellp+iGFIGG6p5eX/6sLdaw==
-"
+  secret: "Q6g35/T2kP1sEXb++wJg28Q8ti7j2/o9qSyLbRMID3fEst3TlimwsdKwmrOhyc8EViFBkQSLOr/yrbVSWI5hgQ=="

@@ -1,19 +1,15 @@
 package com.example.skilllinkbackend.features.users.dto;
 
-import com.example.skilllinkbackend.features.auth.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MentorRequest {
+public class MentorResponse {
+    private Long id;
     private String username;
-    private String password;
-    private String confirmPassword;
     private String firstName;
     private String lastName;
     private String email;
@@ -21,5 +17,4 @@ public class MentorRequest {
     private String bio;
     private String experience;
     private String education;
-    private Role role;
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register as Mentor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="mb-4">Register as Mentor</h1>
+
+  <form th:action="@{/mentors/add}" method="post" th:object="${mentorRequest}">
+    <!-- Account Information -->
+    <div class="form-group mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" th:field="*{username}" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" th:field="*{password}" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" required>
+    </div>
+
+    <!-- Other fields with th:field bindings -->
+    <div class="form-group mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" th:field="*{firstName}" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="lastName" th:field="*{lastName}" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" th:field="*{email}" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="photo" class="form-label">Photo URL</label>
+      <input type="url" class="form-control" id="photo" th:field="*{photo}">
+    </div>
+    <div class="form-group mb-3">
+      <label for="bio" class="form-label">Bio</label>
+      <textarea class="form-control" id="bio" th:field="*{bio}"></textarea>
+    </div>
+    <div class="form-group mb-3">
+      <label for="experience" class="form-label">Experience</label>
+      <textarea class="form-control" id="experience" th:field="*{experience}"></textarea>
+    </div>
+    <div class="form-group mb-3">
+      <label for="education" class="form-label">Education</label>
+      <textarea class="form-control" id="education" th:field="*{education}"></textarea>
+    </div>
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary">Register</button>
+      <a th:href="@{/mentors}" class="btn btn-secondary ms-2">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

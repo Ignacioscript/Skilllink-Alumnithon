@@ -23,17 +23,15 @@ public class SecurityConfig {
      @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
          http
-                 .csrf().disable()
-                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                 .and()
+                 .csrf(csrf -> csrf.disable())
+                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                  .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                  .authorizeHttpRequests(auth -> auth
                          .requestMatchers("/api/auth/**").permitAll()
                          .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                         .requestMatchers("/api/mentors/**").permitAll()
-                         .anyRequest().authenticated()
-                         //TODO establish endpoints permissions
-                 );
+                         .requestMatchers("/api/mentors/**", "/mentors/**", "/").permitAll()
+                         .anyRequest().authenticated());
+                         //TODO establish endpoints permissionn all can get the submissions, only mentors can get to mentors dashboard, only admin can get to admin dashboard, leartners can get to their own dashboard
          return http.build();
      }
 

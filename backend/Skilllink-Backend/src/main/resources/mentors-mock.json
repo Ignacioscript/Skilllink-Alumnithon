@@ -1,0 +1,42 @@
+[
+  {
+      "username": "iggyfrom",
+      "password": "securePassword123",
+      "role": "MENTOR"
+    "firstName": "Ignatius",
+    "lastName": "Froom",
+    "email": "iggye@example.com",
+    "photo": "https://example.com/photo.jpg",
+    "bio": "Experienced mentor specializing in backend frameworks.",
+    "experience": "6+ years in software Analyst.",
+    "education": "M.Sc. in Computer Science"
+  },
+  {
+    "user": {
+      "username": "vickyjup",
+      "password": "securePassword456",
+      "role": "MENTOR"
+    },
+    "firstName": "Vicky",
+    "lastName": "Jupper",
+    "email": "jupper@example.com",
+    "photo": "https://example.com/photos/janedoe.jpg",
+    "bio": "AI mentor with a focus on deep learning and NLP.",
+    "experience": "2+ years in AI research.",
+    "education": "Ph.D. in Machine Learning"
+  },
+  {
+    "user": {
+      "username": "leahrose",
+      "password": "securePassword890",
+      "role": "MENTOR"
+    },
+    "firstName": "Leah",
+    "lastName": "Rose",
+    "email": "rose@example.com",
+    "photo": "https://example.com/photos/janedoe.jpg",
+    "bio": "Java champion, specialized in Vaadin.",
+    "experience": "3+ years in java spring framework.",
+    "education": "Associate degree. in backend"
+  }
+]
