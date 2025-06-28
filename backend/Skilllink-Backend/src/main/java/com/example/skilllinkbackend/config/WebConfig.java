@@ -10,14 +10,18 @@ public class WebConfig {
 
     /**
      * CORS configuration for the SkillLink application.
-     * This configuration allows cross-origin requests from the specified origin.
+     * This configuration allows cross-origin requests from both local development and production URLs.
      */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:5173");
+                registry.addMapping("/**")
+                        .allowedOrigins(
+                                "http://localhost:5173",
+                                "https://skilllink-alumnithon-nine.vercel.app"
+                        );
             }
         };
     }
