@@ -20,13 +20,9 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                                "http://localhost:5173",
-                                "https://skilllink-alumnithon-nine.vercel.app",
-                                "https://skilllink-alumnithon.onrender.com"
-                        )
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
-                        .allowedHeaders("Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With")
+                        .allowedOrigins(allowedOrigins != null ? allowedOrigins : new String[0])
+                        .allowedMethods(allowedMethods != null ? allowedMethods : new String[]{"GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"})
+                        .allowedHeaders(allowedHeaders != null ? allowedHeaders : new String[]{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"})
                         .exposedHeaders("Authorization")
                         .allowCredentials(true)
                         .maxAge(3600L);
@@ -34,27 +30,22 @@ public class WebConfig {
         };
     }
 
-    // Getters and setters
+    // Getters and setters...
     public void setAllowedOrigins(String[] allowedOrigins) {
         this.allowedOrigins = allowedOrigins;
     }
-
     public void setAllowedMethods(String[] allowedMethods) {
         this.allowedMethods = allowedMethods;
     }
-
     public void setAllowedHeaders(String[] allowedHeaders) {
         this.allowedHeaders = allowedHeaders;
     }
-
     public String[] getAllowedOrigins() {
         return allowedOrigins;
     }
-
     public String[] getAllowedMethods() {
         return allowedMethods;
     }
-
     public String[] getAllowedHeaders() {
         return allowedHeaders;
     }
